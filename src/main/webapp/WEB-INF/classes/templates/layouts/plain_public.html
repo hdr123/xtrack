@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"></meta>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+  <meta name="msapplication-tap-highlight" content="no"></meta>
+  <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. "></meta>
+  <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,"></meta>
+  <title>HDR SpringBoot Web Application</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+
+
+  <!-- Favicons-->
+  <link rel="icon" th:href="@{/resources/images/favicon/favicon-32x32.png}" sizes="32x32"/>
+  <!-- Favicons-->
+  <link rel="apple-touch-icon-precomposed" th:href="@{/resources/images/favicon/apple-touch-icon-152x152.png}"/>
+  <!-- For iPhone -->
+  <meta name="msapplication-TileColor" content="#00bcd4"></meta>
+  <meta name="msapplication-TileImage" th:content="@{/resources/images/favicon/mstile-144x144.png}"/>
+  <!-- For Windows Phone -->
+
+
+  <!-- CORE CSS-->
+  <link th:href="@{/resources/css/materialize.min.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link th:href="@{/resources/css/style.min.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <!-- CSS style Horizontal Nav-->    
+  <link th:href="@{/resources/css/layouts/style-horizontal.css}" type="text/css" rel="stylesheet" media="screen,projection"/>  
+  <!-- Custome CSS-->    
+  <link th:href="@{/resources/css/custom/custom.min.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <!-- plain helper -->
+  <link th:href="@{/resources/css/plainhelper.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <!-- Sweet Alert -->
+  <link th:href="@{/resources/js/plugins/sweetalert/sweetalert.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+ 
+  
+  <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+  <link th:href="@{/resources/js/plugins/perfect-scrollbar/perfect-scrollbar.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+ 
+   <!-- jQuery Library -->
+    <script type="text/javascript" th:src="@{/resources/js/plugins/jquery-1.11.2.min.js}"></script>    
+    <!--materialize js-->
+    <script type="text/javascript" th:src="@{/resources/js/materialize.min.js}"></script>
+    <!--scrollbar-->
+    <script type="text/javascript" th:src="@{/resources/js/plugins/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+    
+    <!--plugins.js - Some Specific JS codes for Plugin Settings-->
+    <script type="text/javascript" th:src="@{/resources/js/plugins.min.js}"></script>
+    <!-- Sweet Alert -->
+    <script type="text/javascript" th:src="@{/resources/js/plugins/sweetalert/sweetalert.min.js}"></script>
+	
+
+<body id="layouts-horizontal">
+	<!-- Start Page Loading -->
+	  <div id="loader-wrapper">
+	      <div id="loader"></div>        
+	      <div class="loader-section section-left"></div>
+	      <div class="loader-section section-right"></div>
+	  </div>
+	  <!-- End Page Loading -->
+	
+	  <!-- //////////////////////////////////////////////////////////////////////////// -->
+		
+	<header th:replace="fragments/headerWithHorizontalMenuBar::headerMenuBar"></header>
+ 
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+	  
+
+
+	 
+	 <!-- START MAIN -->
+  <div id="main">
+    <!-- START WRAPPER -->
+    <div class="wrapper">
+	
+      <!-- START CONTENT -->
+      <section id="content">  
+      
+      <!--start container-->
+        <div class="container">
+          <div class="section" layout:fragment="content">
+            <p class="caption">Title Contetnt goes here</p>            
+       		<div class="divider"></div>
+           	<p>Content goes here</p>
+          </div>
+         
+        </div>
+        <!--end container-->
+      </section>
+      <!-- END CONTENT -->
+
+    
+    </div>
+    <!-- END WRAPPER -->
+
+  </div>
+  <!-- END MAIN -->
+
+
+  <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+  <!-- START FOOTER --> 
+	<footer th:replace="fragments/footer::footer"></footer>
+  <!-- END FOOTER -->
+  
+  
+ 
+     
+
+
+
+</body>
+</html>

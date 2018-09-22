@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<th:block th:fragment="input">
+		<th:block th:if="${#bools.isTrue(__${display}__)}">
+			<div class="input-field"
+				th:classappend="${(#bools.isTrue(__${required}__) ? 'required' : '') + ' ' + #strings.defaultString('__${cssClass}__', '')}">
+				<div th:id="__${field}__" th:text="*{__${field}__}" class="value"></div>
+				<label
+					th:for="__${field}__"
+					th:text="${fieldLabel}">Label</label>
+			</div>
+		</th:block>
+		<th:block th:unless="${#bools.isTrue(__${display}__)}">
+			<div class="input-field"
+				th:classappend="${(#bools.isTrue(__${required}__) ? 'required' : '') + ' ' + #strings.defaultString('__${cssClass}__', '')}">
+				<input
+					th:type="__${type}__"
+					th:field="*{__${field}__}"
+					th:step="__${step}__"
+					th:readonly="${__${readonly}__ == true ? 'readonly' : null}"
+					th:maxlength="${(__${maxlength}__ != null ? __${maxlength}__ : '')}"
+					th:size="${(__${size}__ != null ? __${size}__ : '')}"
+					th:pattern="${('__${pattern}__' != 'null' ? '__${pattern}__' : '')}"
+                    th:classappend="${(#fields.hasErrors('__${field}__') ? 'invalid' : '')}"
+                    th:placeholder="${placeHolder}"
+				/>
+				<label
+					th:for="__${field}__"
+					th:text="${fieldLabel}">Label</label>
+				<div class="error"
+					th:if="${#fields.hasErrors('__${field}__')}">
+					<small class="error"
+						th:text="${#strings.arrayJoin(#fields.errors('__${field}__'), ', ')}" ></small>
+				</div>
+			</div>
+		</th:block>
+	</th:block>
+
+	<th:block th:fragment="textarea">
+		<div class="input-field"
+			th:classappend="${(#bools.isTrue(__${required}__) ? 'required' : '') + ' ' + #strings.defaultString('__${cssClass}__', '')}">
+			<textarea class="materialize-textarea"
+				th:type="__${type}__"
+				th:field="*{__${field}__}"
+				th:step="__${step}__"
+				th:readonly="${__${readonly}__ == true ? 'readonly' : null}"
+			></textarea>
+			<label
+				th:for="__${field}__"
+				th:text="${fieldLabel}">Label</label>
+			<div class="error"
+				th:if="${#fields.hasErrors('__${field}__')}">
+				<small class="error"
+					th:text="${#strings.arrayJoin(#fields.errors('__${field}__'), ', ')}" ></small>
+			</div>
+		</div>
+	</th:block>
+
+	<th:block th:fragment="autocomplete">
+		<th:block th:if="${#bools.isTrue(__${display}__)}">
+			<input type="hidden" th:id="__${field}__Id" th:name="__${field}__Id" th:value="*{__${field}__Id}" />
+			<div class="input-field"
+				th:classappend="${(#bools.isTrue(__${required}__) ? 'required' : '') + ' ' + #strings.defaultString('__${cssClass}__', '')}">
+				<div th:id="__${field}__Text" th:text="*{__${field}__Text}" class="value"></div>
+				<label
+					th:for="__${field}__"
+					th:text="${fieldLabel}">Label</label>
+			</div>
+		</th:block>
+		<th:block th:unless="${#bools.isTrue(__${display}__)}">
+			<div class="input-field"
+				th:classappend="${(#bools.isTrue(__${required}__) ? 'required' : '') + ' ' + #strings.defaultString('__${cssClass}__', '')}">
+				<input type="hidden" th:id="__${field}__Id" th:value="*{__${field}__Id}" />
+				<input
+					th:type="text"
+					th:field="*{__${field}__Text}"
+					th:readonly="${__${readonly}__ == true ? 'readonly' : null}" autocomplete="off"
+					th:classappend="${(#fields.hasErrors('__${field}__Id') ? 'invalid' : '')}"
+				/>
+				<label
+					th:for="__${field}__Text"
+					th:text="${fieldLabel}">Label</label>
+				<div class="error"
+					th:if="${#fields.hasErrors('__${field}__Id')}">
+					<small class="error"
+						th:text="${#strings.arrayJoin(#fields.errors('__${field}__Id'), ', ')}" ></small>
+				</div>
+				<ul th:id="__${field}__Dropdown" class="dropdown-content ac-dropdown"
+					style="opacity: 1;"></ul>
+			</div>
+		</th:block>
+	</th:block>
+
+	<th:block th:fragment="select">
+		<th:block th:if="${#bools.isTrue(__${display}__)}">
+			<div class="input-field"
+				th:classappend="${(#bools.isTrue(__${required}__) ? 'required' : '') + ' ' + #strings.defaultString('__${cssClass}__', '')}">
+				<th:block th:each="i : ${__${options}__}">
+					<div th:if="*{__${field}__} == ${i.__${optionValue}__}" th:id="__${field}__"
+						th:text="${i.__${optionText}__}"
+						class="value"></div>
+				</th:block>
+				<label
+					th:for="__${field}__"
+					th:text="${fieldLabel}">Label</label>
+			</div>
+		</th:block>
+		<th:block th:unless="${#bools.isTrue(__${display}__)}">
+			<div class="input-field"
+				th:classappend="${(#bools.isTrue(__${required}__) ? 'required' : '') + ' ' + #strings.defaultString('__${cssClass}__', '')}">
+				<input type="hidden" th:id="__${field}__Hidden" th:value="*{__${field}__}" th:name="__${field}__Hidden"
+					th:if="${__${disabled}__ == true}" />
+				<select
+					th:id="__${field}__"
+					th:field="*{__${field}__}"
+					th:classappend="${#fields.hasErrors('__${field}__')} ? 'invalid'"
+					th:disabled="${__${disabled}__ == true ? 'disabled' : null}">
+					<option value=""
+						th:text="${'--Pilih '+ '__${fieldLabel}__' + '--'}">--Pilih Label--
+					</option>
+					<option th:each="i : ${__${options}__}"
+						th:value="${i.__${optionValue}__}"
+						th:text="${i.__${optionText}__}"
+						th:selected="(*{__${field}__} == ${i.__${optionValue}__} ? 'selected' : null)">
+						Options
+					</option>
+				</select>
+				<label
+					th:for="__${field}__"
+					th:text="${fieldLabel}">Label</label>
+				<div class="error"
+					th:if="${#fields.hasErrors('__${field}__')}">
+					<small class="error"
+						th:text="${#strings.arrayJoin(#fields.errors('__${field}__'), ', ')}" ></small>
+				</div>
+			</div>
+		</th:block>
+	</th:block>
+
+	<th:block th:fragment="radio">
+		<th:block th:if="${#bools.isTrue(__${display}__)}">
+			<div class="input-field col"
+				th:classappend="${(#bools.isTrue(__${required}__) ? 'required' : '') + ' ' + #strings.defaultString('__${cssClass}__', '')}">
+				<th:block th:each="i : ${__${options}__}">
+					<div th:if="*{__${field}__} == ${i.__${optionValue}__}" th:id="__${field}__"
+						th:text="${i.__${optionText}__}"
+						class="value"></div>
+				</th:block>
+				<label
+					th:for="__${field}__"
+					th:text="${fieldLabel}">Label</label>
+			</div>
+		</th:block>
+		<th:block th:unless="${#bools.isTrue(__${display}__)}">
+			<div class="col"
+				th:classappend="${#strings.defaultString('__${cssClass}__', '')}">
+				<div class="s12">
+					<label
+						th:text="${fieldLabel}">Label</label>
+				</div>
+				<div class="input"
+					th:classappend="${(#bools.isTrue(__${required}__) ? 'required' : '') + ' ' + 's12'}">
+					<th:block th:each="i: ${__${options}__}">
+						<input
+							th:id="${'__${field}__' + i.__${optionValue}__}"
+							th:name="__${field}__" type="radio"
+							th:value="${i.__${optionValue}__}"
+							th:checked="*{__${field}__} == ${i.__${optionValue}__}" />
+						<label th:for="${'__${field}__' + i.__${optionValue}__}"
+							th:text="${i.__${optionText}__}">Option Label</label>
+					</th:block>
+					<div class="error"
+						th:if="${#fields.hasErrors('__${field}__')}">
+						<small class="error"
+							th:text="${#strings.arrayJoin(#fields.errors('__${field}__'), ', ')}" ></small>
+					</div>
+				</div>
+			</div>
+		</th:block>
+	</th:block>
+
+	<th:block th:fragment="datepicker">
+		<th:block th:if="${#bools.isTrue(__${display}__)}">
+			<div class="input-field"
+				th:classappend="${(#bools.isTrue(__${required}__) ? 'required' : '') + ' ' + #strings.defaultString('__${cssClass}__', '')}">
+				<div th:id="__${field}__"
+					th:text="*{__${field}__} != null ? *{#dates.format(__${field}__, 'dd-MM-yyyy')}"
+					class="value"></div>
+				<label
+					th:for="__${field}__"
+					th:text="${fieldLabel}">Label</label>
+			</div>
+		</th:block>
+		<th:block th:unless="${#bools.isTrue(__${display}__)}">
+			<div class="input-field"
+				th:classappend="${(#bools.isTrue(__${required}__) ? 'required' : '') + ' ' + #strings.defaultString('__${cssClass}__', '')}">
+				<input type="text" class="datepicker"
+					th:id="__${field}__"
+					th:field="*{__${field}__}"
+					th:classappend="${#fields.hasErrors('__${field}__') ? 'invalid' : ''}" />
+				<label
+					th:for="__${field}__"
+					th:text="${fieldLabel}">Date Label</label>
+				<div class="error"
+					th:if="${#fields.hasErrors('__${field}__')}">
+					<small class="error"
+						th:text="${#strings.arrayJoin(#fields.errors('__${field}__'), ', ')}" ></small>
+				</div>
+			</div>
+		</th:block>
+	</th:block>
+
+	<th:block th:fragment="singleCheckbox">
+		<div class="input-field"
+			th:classappend="${#strings.defaultString('__${cssClass}__', '')}">
+			<input type="checkbox" class="filled-in"
+				th:id="__${field}__"
+				th:value="__${value}__"
+				th:name="__${field}__"
+				th:checked="*{__${field}__} == __${value}__" />
+			<label
+				th:for="__${field}__"
+				th:text="__${fieldLabel}__">Label Checkbox</label>
+		</div>
+	</th:block>
+	<th:block th:fragment="globalerrors">
+		<th:block th:if="${#fields.hasErrors('global')}">
+			<blockquote>
+				<div class="red-text text-darken-4">
+					<ul>
+						<li th:each="err : ${#fields.errors('global')}"
+							th:text="${err}" />
+					</ul>
+				</div>
+			</blockquote>
+		</th:block>
+	</th:block>
+</body>
+</html>

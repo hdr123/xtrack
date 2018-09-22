@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<!-- HORIZONTL NAV START-->
+	<div th:fragment="menu_bar">
+		<nav id="horizontal-nav" class="white hide-on-med-and-down">
+			<div class="nav-wrapper">
+				<ul id="ul-horizontal-nav" class="left hide-on-med-and-down">
+					<li><a th:href="@{/index.html}" class="cyan-text"> <i
+							class="mdi-action-dashboard"></i> <span>Home</span>
+					</a></li>
+					<li><a href="app-email.html" class="cyan-text"> <i
+							class="mdi-action-invert-colors"></i> <span>Event</span>
+					</a></li>
+					
+					<li><a class="dropdown-menu cyan-text" href="#!"
+						data-activates="Usersdropdown"> <i
+							class="mdi-action-account-circle"></i> <span>Users<i
+								class="mdi-navigation-arrow-drop-down right"></i></span>
+					</a></li>
+					
+				</ul>
+			</div>
+		</nav>
+
+		
+
+		<!-- Usersdropdown -->
+		<ul id="Usersdropdown"
+			class="dropdown-content dropdown-horizontal-list">
+			<li><a href="#" class="cyan-text">User Profile</a></li>
+			<li><a href="#" class="cyan-text">Login</a></li>
+			<li><a href="#" class="cyan-text">Register</a></li>
+			<li><a href="#" class="cyan-text">Forgot Password</a></li>
+			<li><a href="#" class="cyan-text">Lock Screen</a></li>
+			<li><a href="#" class="cyan-text">Session Timeout</a></li>
+		</ul>
+
+	</div>
+	
+
+		<!-- HORIZONTL NAV END-->
+</body>
+</html>
