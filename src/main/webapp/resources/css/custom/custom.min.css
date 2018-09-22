@@ -1,0 +1,25 @@
+body
+{
+    cursor: default
+}
+
+.jsgrid-pager-container ul {	
+	margin-top: 10px;
+    margin-bottom: 5px
+}
+.pagination li {
+	font-size:1rem;
+    vertical-align: middle;
+}
+
+
+.pagination li.active {
+    background-color: #00bcd4;
+    color:#fff;
+    cursor:default;
+}
+
+pagination li.disabled a {
+    cursor: default;
+    color: #999;
+}
